@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <ImageView
+        android:id="@+id/damImage"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_dam"
+        android:contentDescription="Dam Image"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dam Control Status"
+        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gate:"
+            android:textSize="18sp"
+            android:layout_gravity="center_vertical"
+            android:paddingEnd="8dp"/>
+
+        <Switch
+            android:id="@+id/switchGate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/tvGateStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open"
+            android:textSize="18sp"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="8dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnEnableControl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enable Control"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:paddingBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/rainStatusIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_rainy"
+                android:contentDescription="Rain Status Icon"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvRainStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rain Status"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/rainLevelIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_water_level"
+                android:contentDescription="Rain Level Icon"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvRainLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rain Level"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>

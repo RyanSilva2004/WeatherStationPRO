@@ -1,0 +1,45 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base Layer: Light Blue Gradient -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#EFF2FD"
+            android:endColor="#FFFFFF"
+            android:angle="90" />
+        </shape>
+    </item>
+
+    <!-- Decorative Layer: Transparent Overlays for Depth -->
+    <item>
+        <shape android:shape="oval">
+            <size
+                android:width="500dp"
+                android:height="300dp" />
+            <solid android:color="#30FFFFFF" />
+            <gradient
+                android:startColor="#30FFFFFF"
+                android:endColor="#10FFFFFF"
+                android:angle="45" />
+        </shape>
+        <translate
+            android:fromXDelta="50%"
+            android:fromYDelta="-30%" />
+    </item>
+
+    <item>
+        <shape android:shape="oval">
+            <size
+                android:width="600dp"
+                android:height="350dp" />
+            <solid android:color="#10FFFFFF" />
+            <gradient
+                android:startColor="#10FFFFFF"
+                android:endColor="#01FFFFFF"
+                android:angle="-45" />
+        </shape>
+        <translate
+            android:fromXDelta="-40%"
+            android:fromYDelta="60%" />
+    </item>
+</layer-list>

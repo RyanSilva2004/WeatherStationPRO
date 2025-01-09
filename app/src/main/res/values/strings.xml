@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WeatherStationPRO</string>
+        <string-array name="time_range_options">
+            <item>Hourly</item>
+            <item>Daily</item>
+        </string-array>
+</resources>
