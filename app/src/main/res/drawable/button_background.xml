@@ -1,11 +1,12 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:shape="rectangle">
-            <gradient
-                android:startColor="#FF0000"
-                android:endColor="#8B0000"
-                android:angle="90"/>
-            <corners android:radius="16dp"/>
-        </shape>
-    </item>
-</layer-list>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFB3BA"/> <!-- Pastel pink color -->
+    <stroke
+        android:width="2dp"
+        android:color="#FF69B4"/> <!-- Dark pink color for the border -->
+    <corners android:radius="8dp"/>
+    <padding
+        android:left="10dp"
+        android:top="10dp"
+        android:right="10dp"
+        android:bottom="10dp"/>
+</shape>
