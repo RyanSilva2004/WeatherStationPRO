@@ -189,11 +189,16 @@ public class DamControlActivity extends AppCompatActivity {
         int waterLevel = Integer.parseInt(waterLevelStr.replace("%", ""));
         tvWaterLevel.setText("Dam Water Level: " + waterLevelStr);
 
-        if (waterLevel > 75) {
+        if (waterLevel > 70)
+        {
             tvWaterLevel.setTextColor(Color.RED);
-        } else if (waterLevel > 40) {
+        }
+        else if (waterLevel > 50)
+        {
             tvWaterLevel.setTextColor(Color.GREEN);
-        } else {
+        }
+        else
+        {
             tvWaterLevel.setTextColor(Color.BLUE);
         }
     }

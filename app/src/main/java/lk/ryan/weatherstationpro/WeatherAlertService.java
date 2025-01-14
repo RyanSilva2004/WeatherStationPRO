@@ -32,6 +32,13 @@ public class WeatherAlertService extends Service {
     private static final double HIGH_RAIN_LEVEL_THRESHOLD = 100.0;
     private static final double HIGH_HUMIDITY_THRESHOLD = 80.0;
 
+    // State variables to track alert statuses
+    private boolean temperatureAlertSent = false;
+    private boolean windSpeedAlertSent = false;
+    private boolean rainLevelAlertSent = false;
+    private boolean humidityAlertSent = false;
+    private boolean damAlertSent = false;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -70,14 +77,14 @@ public class WeatherAlertService extends Service {
         return null;
     }
 
-    private void listenForWeatherData()
-    {
-        mDatabase.addValueEventListener(new ValueEventListener()
-        {
+    private void listenForWeatherData() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
                 RealtimeUpdate realtimeUpdate = dataSnapshot.getValue(RealtimeUpdate.class);
-                if (realtimeUpdate != null) {
+                if (realtimeUpdate != null)
+                {
                     Log.d("WeatherAlertService", "Fetched realtime data: " + realtimeUpdate.toString());
                     checkForAlerts(realtimeUpdate);
                 }
@@ -91,28 +98,71 @@ public class WeatherAlertService extends Service {
     }
 
     private void checkForAlerts(RealtimeUpdate realtimeUpdate) {
-
-        if ("Rain".equals(realtimeUpdate.rain_status)) {
-            sendNotification("Rain Alert", "It's raining: " + realtimeUpdate.rain_level + " mm");
-        }
-
+        // High temperature alert
         if (realtimeUpdate.temp > HIGH_TEMPERATURE_THRESHOLD) {
-            sendNotification("High temperature warning", "Temperature is high: " + realtimeUpdate.temp + " °C");
+            if (!temperatureAlertSent) {
+                sendNotification("High Temperature Warning", "Temperature is high: " + realtimeUpdate.temp + " °C");
+                temperatureAlertSent = true;
+            }
+        }
+        else
+        {
+            temperatureAlertSent = false;
         }
 
-        if (realtimeUpdate.rain_level > HIGH_RAIN_LEVEL_THRESHOLD) {
-            sendNotification("Heavy rain warning", "Rain level is high: " + realtimeUpdate.rain_level + " mm");
-        }
-
+        // High wind speed alert
         if (realtimeUpdate.wind_speed > HIGH_WIND_SPEED_THRESHOLD) {
-            sendNotification("High wind speed warning", "Wind speed is high: " + realtimeUpdate.wind_speed + " KM/H");
+            if (!windSpeedAlertSent) {
+                sendNotification("High Wind Speed Warning", "Wind speed is high: " + realtimeUpdate.wind_speed + " KM/H");
+                windSpeedAlertSent = true;
+            }
+        } else {
+            windSpeedAlertSent = false;
         }
 
+        // High rain level alert
+        if (realtimeUpdate.rain_level > HIGH_RAIN_LEVEL_THRESHOLD) {
+            if (!rainLevelAlertSent) {
+                sendNotification("Heavy Rain Warning", "Rain level is high: " + realtimeUpdate.rain_level + " mm");
+                rainLevelAlertSent = true;
+            }
+        } else {
+            rainLevelAlertSent = false;
+        }
+
+        // High humidity alert
         if (realtimeUpdate.humidity > HIGH_HUMIDITY_THRESHOLD) {
-            sendNotification("High humidity warning", "Humidity is high: " + realtimeUpdate.humidity + "%");
+            if (!humidityAlertSent) {
+                sendNotification("High Humidity Warning", "Humidity is high: " + realtimeUpdate.humidity + "%");
+                humidityAlertSent = true;
+            }
+        }
+        else
+        {
+            humidityAlertSent = false;
         }
 
+        // Dam status alert with water level conditions
+        if (realtimeUpdate.dam_status && realtimeUpdate.rain_level > HIGH_RAIN_LEVEL_THRESHOLD && !damAlertSent)
+        {
+            sendNotification("Dam Gate 1 Opened", "Dam is open. Water level: " + realtimeUpdate.dam_water_level + " is high.");
+            damAlertSent = true;
+        }
+        else
+        {
+            // Dam is closed, notify about high or low water levels
+            if (realtimeUpdate.rain_level > HIGH_RAIN_LEVEL_THRESHOLD && !damAlertSent)
+            {
+                sendNotification("High Water Level Warning", "Dam Water level is high: " + realtimeUpdate.dam_water_level+"Rain Water Level:"+realtimeUpdate.rain_level+"mm");
+                damAlertSent = true;
+            }
+            else if (realtimeUpdate.rain_level <= HIGH_RAIN_LEVEL_THRESHOLD && damAlertSent) {
+                sendNotification("Low Water Level Update", "Dam Water level is now normal: " + realtimeUpdate.dam_water_level);
+                damAlertSent = false; // Reset the state
+            }
+        }
     }
+
 
     private void sendNotification(String title, String message) {
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
@@ -124,7 +174,7 @@ public class WeatherAlertService extends Service {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         if (notificationManager != null) {
-            notificationManager.notify(1, notification);
+            notificationManager.notify((int) System.currentTimeMillis(), notification); // Unique ID for each notification
         }
 
         Log.d("WeatherAlertService", "Notification sent: " + title);
