@@ -70,8 +70,10 @@ public class WeatherAlertService extends Service {
         return null;
     }
 
-    private void listenForWeatherData() {
-        mDatabase.addValueEventListener(new ValueEventListener() {
+    private void listenForWeatherData()
+    {
+        mDatabase.addValueEventListener(new ValueEventListener()
+        {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 RealtimeUpdate realtimeUpdate = dataSnapshot.getValue(RealtimeUpdate.class);
