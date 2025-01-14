@@ -112,14 +112,14 @@ public class WindSpeedHistoryActivity extends AppCompatActivity {
     }
 
     private Long convertTimestampToLong(String timestampStr) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
         try {
             Date date = sdf.parse(timestampStr);
             if (date != null) {
                 return date.getTime();
             }
         } catch (ParseException e) {
-            Log.e("WindSpeedHistory", "Error parsing timestamp: " + timestampStr, e);
+            Log.e("RainChart", "Error parsing timestamp: " + timestampStr, e);
         }
         return null;
     }

@@ -137,7 +137,7 @@ public class RainChartActivity extends AppCompatActivity {
     }
 
     private Long convertTimestampToLong(String timestampStr) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
         try {
             Date date = sdf.parse(timestampStr);
             if (date != null) {
