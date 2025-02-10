@@ -18,9 +18,13 @@
     <img src="https://github.com/user-attachments/assets/d03a7e63-6da2-4d56-a6b9-7fe2f7034a99" alt="Wind Speed History Chart" style="width:18%; margin:5px;" />
     <img src="https://github.com/user-attachments/assets/b212c35d-94b5-47c1-9402-26a8eedd4336" alt="Dam Controller" style="width:18%; margin:5px;" />
     <h2>🏗️ System Architecture</h2>
-    <img src="path-to-your-architecture-diagram.png" alt="System Architecture Diagram" />
+    <img src="https://github.com/user-attachments/assets/6cbd4649-af1e-486e-899f-c076afeed4e2" alt="System Architecture Diagram" style="width:60%; margin:5px;"/>
     <h2>🔧 Hardware Circuit Diagram</h2>
-    <img src="https://github.com/user-attachments/assets/0c5ccf37-c443-43c0-ba8e-2a21518ec1ff" alt="Circuit Diagram" />
+    <img src="https://github.com/user-attachments/assets/0c5ccf37-c443-43c0-ba8e-2a21518ec1ff" alt="Weather Station Circuit Diagram" style="width:60%; margin:5px;"/>
+    <img src="https://github.com/user-attachments/assets/98679483-b052-4a95-af80-7052c394bfa2" alt="Dam Controller Circuit Diagram" style="width:18%; margin:5px;"/>
+    <img src="https://github.com/user-attachments/assets/cd8b1e4e-4813-44d1-a627-ba3769381f8b" alt="Alert Tower Circuit Diagram" style="width:18%; margin:5px;"/>
+    <h2>🔄 System Workflow</h2>
+    <img src="https://github.com/user-attachments/assets/6deb2f56-df4c-412a-b2d7-54b88aa47f7a" alt="System Architecture Diagram" style="width:70%; margin:5px;"/>
     <h2>📂 Real-Time Firebase Data</h2>
     <p>Data is fetched from the following paths in the Firebase Realtime Database:</p>
     <ul>
